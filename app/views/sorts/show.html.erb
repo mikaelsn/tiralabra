@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @sort.name %>
+</p>
+
+<p>
+  <strong>Runtime:</strong>
+  <%= @sort.runtime %>
+</p>
+
+<p>
+  <strong>Input:</strong>
+  <%= @sort.input %>
+</p>
+
+<%= link_to 'Edit', edit_sort_path(@sort) %> |
+<%= link_to 'Back', sorts_path %>

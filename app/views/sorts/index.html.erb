@@ -1,0 +1,31 @@
+<h1>Listing sorts</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Runtime</th>
+      <th>Input</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @sorts.each do |sort| %>
+      <tr>
+        <td><%= sort.name %></td>
+        <td><%= sort.runtime %></td>
+        <td><%= sort.input %></td>
+        <td><%= link_to 'Show', sort %></td>
+        <td><%= link_to 'Edit', edit_sort_path(sort) %></td>
+        <td><%= link_to 'Destroy', sort, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Sort', new_sort_path %>
