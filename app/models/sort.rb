@@ -1,16 +1,13 @@
 class Sort < ActiveRecord::Base
 
-	def self.bubble(keys)
-		bubble!(keys.clone)
-	end
-
-	def self.bubble!(keys)
-		0.upto(keys.size-1) do |i|
-			(keys.size-1).downto(i+1) do |j|
-				(keys[j], keys[j-1] = keys[j-1], keys[j]) if keys[j] < keys[j-1]
+	def self.bubble(list)
+		list.each_index do |i|
+			(list.length - i - 1).times do |job|
+				if list[job] > list[job + 1]
+					list[job], list[job + 1] = list[job + 1], list[job]
+				end
 			end
 		end
-		keys
 	end
 
 end
