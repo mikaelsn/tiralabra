@@ -1,6 +1,6 @@
 class Sort < ActiveRecord::Base
 
-	attr_accessible :bubble, :quick, :merge
+	attr_reader :bubble, :quick, :merge, :input, :type
 
 	def self.bubble(list)
 		list.each_index do |i|

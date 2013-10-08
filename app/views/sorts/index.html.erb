@@ -1,13 +1,11 @@
-<h1>Create a new table</h1>
-
 <h1>Listing sorts</h1>
 
 <table class="table">
   <thead>
     <tr>
-      <th>Name</th>
+      <th>Type</th>
+      <th>Input size</th>
       <th>Runtime</th>
-      <th>Input</th>
       <th></th>
       <th></th>
       <th></th>
@@ -18,4 +16,4 @@
 
 <br>
 
-<%= link_to 'New Sort', new_sort_path %>
+<%= button_to 'New Sort', new_sort_path, :method => "get", :class => "btn btn-primary" %>

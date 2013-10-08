@@ -12,12 +12,22 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :name %><br>
-    <%= f.text_field :name %>
+    <%= f.label :input %><br>
+    <%= f.text_area :input %>
+  </div>
+
+  <div class="field">
+    <%= f.label :type %>
+    <%= radio_button_tag :type, 'ascending', true %>
+    <%= label_tag(:type_ascending, "ascending", :style => "display:inline") %><br>
+    <%= radio_button_tag :type, 'descending' %>
+    <%= label_tag(:type_descending, "descending", :style => "display:inline") %><br>
+    <%= radio_button_tag :type, 'random' %>
+    <%= label_tag(:type_random, "random", :style => "display:inline") %>    
   </div>
 
 
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit :class => "btn btn-primary" %>
   </div>
 <% end %>

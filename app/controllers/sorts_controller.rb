@@ -9,6 +9,7 @@ class SortsController < ApplicationController
   # GET /sorts.json
   def index
     @sorts = Sort.all
+    
     list = [9, 0, 45, 3, 6, 7, 20, 19, 5]
     p list
     bubble = Benchmark.realtime do 
