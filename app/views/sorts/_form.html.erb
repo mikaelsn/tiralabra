@@ -1,4 +1,4 @@
-<%= form_for(@sort) do |f| %>
+<%= form_for Sort.new do |f| %>
   <% if @sort.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@sort.errors.count, "error") %> prohibited this sort from being saved:</h2>
@@ -10,11 +10,6 @@
       </ul>
     </div>
   <% end %>
-
-  <div class="field">
-    <%= f.label :input %><br>
-    <%= f.text_area :input %>
-  </div>
 
   <div class="field">
     <%= f.label :type %>
