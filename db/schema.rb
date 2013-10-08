@@ -11,11 +11,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131008110214) do
+ActiveRecord::Schema.define(version: 20131008192636) do
 
   create_table "sorts", force: true do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.float    "bubble"
+    t.float    "quick"
+    t.float    "merge"
   end
 
 end
