@@ -1,3 +1,7 @@
+require 'benchmark'
+include Benchmark
+require 'bigdecimal/math'
+
 class SortsController < ApplicationController
   before_action :set_sort, only: [:show, :edit, :update, :destroy]
 
@@ -5,6 +9,13 @@ class SortsController < ApplicationController
   # GET /sorts.json
   def index
     @sorts = Sort.all
+    list = [9, 0, 45, 3, 6, 7, 20, 19, 5]
+    p list
+    bubble = Benchmark.realtime do 
+      list = Sort.bubble(list)
+    end
+    p list 
+    p "Took #{bubble*1000}ms"
   end
 
   # GET /sorts/1

@@ -11,12 +11,9 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131007210444) do
+ActiveRecord::Schema.define(version: 20131008110214) do
 
   create_table "sorts", force: true do |t|
-    t.string   "name"
-    t.time     "runtime"
-    t.integer  "input"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
