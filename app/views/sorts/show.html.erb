@@ -3,20 +3,4 @@
 
 <%= content_tag :div, "", id: "chart", data: {sort: @sort} %>
 
-<div>
-	<pre>
-#Bubble sort
-def self.bubble(list)
-  list.each_index do |i|
-    (list.length - i - 1).times do |k|
-      if list[k] > list[k + 1]
-        #ruby parallel assignment (swap)
-        list[k], list[k + 1] = list[k + 1], list[k]
-      end
-    end
-  end
-end
-  </pre>
-</div>
-
 <%= link_to 'Back', sorts_path %>
