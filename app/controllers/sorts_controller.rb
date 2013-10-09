@@ -8,21 +8,13 @@ class SortsController < ApplicationController
   # GET /sorts
   # GET /sorts.json
   def index
-    @sorts = Sort.all
     @sort = Sort.new
-
-    list = [9, 0, 45, 3, 6, 7, 20, 19, 5]
-    p list
-    bubble = Benchmark.realtime do 
-      list = Sort.bubble(list)
-    end
-    p list 
-    p "Took #{bubble*1000}ms"
   end
 
   # GET /sorts/1
   # GET /sorts/1.json
   def show
+    @sort = Sort.find(params[:id])
   end
 
   # GET /sorts/new
@@ -38,10 +30,41 @@ class SortsController < ApplicationController
   # POST /sorts.json
   def create
     @sort = Sort.new(sort_params)
+    @sort.name = params[:name]
+    @sort.input = params[:input]
+
+    # if params[:name] == 'random'
+    #   list = (0..params[:input].to_i).to_a.sort{ rand() - 0.5 }[0..params[:input].to_i]
+    # else
+    #   list = Array.new(params[:input].to_i) { |i| (params[:input].to_i)-i }
+    #   p list
+    # end
+    list = populate(params[:name])
+    p list
+    mergeList = list
+    quickList = list
+
+    merge = Benchmark.realtime do 
+      mergeList = Sort.merge_sort(mergeList)
+    end
+    p mergeList
+
+    quick = Benchmark.realtime do 
+      quickList = Sort.quick_sort(quickList)
+    end
+    p quickList
+
+    bubble = Benchmark.realtime do 
+      list = Sort.bubble(list)
+    end
+
+    @sort.quick = quick
+    @sort.bubble = bubble
+    @sort.merge = merge
 
     respond_to do |format|
       if @sort.save
-        format.html { redirect_to @sort, notice: 'Sort was successfully created.' }
+        format.html { redirect_to @sort, notice: "Bubble #{bubble*1000}ms, Quick #{quick*1000}ms, Merge #{merge*1000}ms" }
         format.json { render action: 'show', status: :created, location: @sort }
       else
         format.html { render action: 'new' }
@@ -82,6 +105,14 @@ class SortsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def sort_params
-      params.require(:sort).permit(:name, :runtime, :input)
+      params.fetch(:sort, {}).permit(:name, :input) 
+    end
+
+    def populate(cond)
+      if cond == 'random'
+        (0..params[:input].to_i).to_a.sort{ rand() - 0.5 }[0..params[:input].to_i]
+      else
+        Array.new(params[:input].to_i) { |i| (params[:input].to_i)-i }
+      end
     end
 end

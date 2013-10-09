@@ -12,13 +12,16 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :type %>
-    <%= radio_button_tag :type, 'ascending', true %>
-    <%= label_tag(:type_ascending, "ascending", :style => "display:inline") %><br>
-    <%= radio_button_tag :type, 'descending' %>
-    <%= label_tag(:type_descending, "descending", :style => "display:inline") %><br>
-    <%= radio_button_tag :type, 'random' %>
-    <%= label_tag(:type_random, "random", :style => "display:inline") %>    
+    <%= f.label :name %>
+    <%= radio_button_tag :name, 'descending', true %>
+    <%= label_tag(:name_descending, "Descending", :style => "display:inline") %><br>
+    <%= radio_button_tag :name, 'random' %>
+    <%= label_tag(:name_random, "Random", :style => "display:inline") %>    
+  </div>
+
+  <div class="field">
+    <%= f.label "Input size" %>
+    <%= number_field_tag :input, 1, in: 1...99999999 %>
   </div>
 
 

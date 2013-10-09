@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131008192636) do
+ActiveRecord::Schema.define(version: 20131009140429) do
 
   create_table "sorts", force: true do |t|
     t.datetime "created_at"
@@ -19,6 +19,8 @@ ActiveRecord::Schema.define(version: 20131008192636) do
     t.float    "bubble"
     t.float    "quick"
     t.float    "merge"
+    t.integer  "input"
+    t.string   "name"
   end
 
 end
