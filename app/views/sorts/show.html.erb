@@ -1,14 +1,7 @@
-<%= debug @sort %>
+<h2>Numbers in array are: <%= @sort.name %></h2>
+<h2>N = <%= @sort.input %></h2>
 
-<p>
-  <strong>Type:</strong>
-  <%= @sort.name %>
-</p>
-
-<p>
-  <strong>Input:</strong>
-  <%= @sort.input %>
-</p>
+<%= content_tag :div, "", id: "chart", data: {sort: @sort} %>
 
 <%= link_to 'Edit', edit_sort_path(@sort) %> |
 <%= link_to 'Back', sorts_path %>

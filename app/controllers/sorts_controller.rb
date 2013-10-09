@@ -58,9 +58,10 @@ class SortsController < ApplicationController
       list = Sort.bubble(list)
     end
 
-    @sort.quick = quick
-    @sort.bubble = bubble
-    @sort.merge = merge
+    #convert to milliseconds
+    @sort.quick = quick*1000
+    @sort.bubble = bubble*1000
+    @sort.merge = merge*1000
 
     respond_to do |format|
       if @sort.save
