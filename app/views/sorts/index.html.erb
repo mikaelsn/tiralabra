@@ -1,17 +1,4 @@
 <h1>Create a new sort</h1>
 <%= render 'form' %>
-<h1>Listing sorts</h1>
-
-<table class="table">
-  <thead>
-    <tr>
-      <th>Type</th>
-      <th>Input size</th>
-      <th>Runtime</th>
-      <th></th>
-      <th></th>
-      <th></th>
-    </tr>
-  </thead>
-
-</table>
+<h1>Average sort times in milliseconds</h1>
+<%= content_tag :div, "", id: "average", data: {sort: @sort} %>

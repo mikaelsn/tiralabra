@@ -2,16 +2,30 @@
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://coffeescript.org/
 $ ->
-	json = $('#chart').data('sort')	
+	if $('#average').length
+		json = $('#average').data('sort')
+		Morris.Bar
+			element: 'average'
+			data: [
+				{y: 'Quick', time: json.quick},
+				{y: 'Merge', time: json.merge},
+				{y: 'Bubble', time: json.bubble}
+			]
+			xkey: 'y'
+			ykeys: ['time']
+			labels: ['Time ']
 
-	Morris.Bar
-		element: 'chart'
-		data: [
-			{y: 'Quick', time: json.quick},
-			{y: 'Merge', time: json.merge},
-			{y: 'Bubble', time: json.bubble}
-		]
-		xkey: 'y'
-		ykeys: ['time']
-		labels: ['Time ']
-		#$('#chart').data('sort')
+	if $('#chart').length
+		json = $('#chart').data('sort')
+		Morris.Bar
+			element: 'chart'
+			data: [
+				{y: 'Quick', time: json.quick},
+				{y: 'Merge', time: json.merge},
+				{y: 'Bubble', time: json.bubble}
+			]
+			xkey: 'y'
+			ykeys: ['time']
+			labels: ['Time ']
+
+	
