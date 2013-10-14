@@ -13,10 +13,12 @@
 
   <div class="field">
     <%= f.label "Fill the array" %>
-    <%= radio_button_tag :name, 'descending', true %>
+    <%= radio_button_tag :name, 'asc', true %>
+    <%= label_tag(:name_ascending, "Ascending (already in order)", :style => "display:inline") %><br>
+    <%= radio_button_tag :name, 'desc' %>
     <%= label_tag(:name_descending, "Descending", :style => "display:inline") %><br>
     <%= radio_button_tag :name, 'random' %>
-    <%= label_tag(:name_random, "Random", :style => "display:inline") %>    
+    <%= label_tag(:name_random, "Random", :style => "display:inline") %> 
   </div>
 
   <div class="field">

@@ -114,8 +114,13 @@ class SortsController < ApplicationController
     def populate(cond, inp)
       if cond == 'random'
         (0..inp.to_i).to_a.sort{ rand() - 0.5 }[0..inp.to_i]
-      else
+      end
+      if cond == 'desc'
         Array.new(inp.to_i) { |i| (inp.to_i)-i }
       end
+      if cond == 'asc'
+        Array.new(inp.to_i) { |i| i }
+      end
     end
+
 end
