@@ -38,37 +38,37 @@ class SortsController < ApplicationController
     @sort.name = params[:name]
     @sort.input = params[:input]
 
-    list = populate(params[:name], params[:input])
-    org = list
-    p org
+    list = Sort.populate(params[:name], params[:input])
+    #org = list
+    #p org
 
     mergeList = list
     quickList = list
     insertList = list
 
-    p "Mergelist before: #{mergeList}"
+    #p "Mergelist before: #{mergeList}"
     merge = Benchmark.realtime do 
       mergeList = Sort.merge_sort(mergeList)
     end
-    p "Mergelist after: #{mergeList}"
+    #p "Mergelist after: #{mergeList}"
 
-    p "Quick before: #{quickList}"
+    #p "Quick before: #{quickList}"
     quick = Benchmark.realtime do 
       quickList = Sort.quick_sort(quickList)
     end
-    p "Quick after: #{quickList}"
+    #p "Quick after: #{quickList}"
 
-    p "Bubble before: #{list}"
+    #p "Bubble before: #{list}"
     bubble = Benchmark.realtime do 
       list = Sort.bubble(list)
     end
-    p "Bubble after: #{list}"
+    #p "Bubble after: #{list}"
 
-    p "Insertion before: #{insertList}"
+    #p "Insertion before: #{insertList}"
     insertion = Benchmark.realtime do 
-      insertList = Sort.insert_sort!(insertList)
+      insertList = Sort.insert_sort(insertList)
     end
-    p "Insertion after: #{insertList}"
+    #p "Insertion after: #{insertList}"
 
     #convert to milliseconds
     @sort.quick = quick*1000
@@ -122,16 +122,6 @@ class SortsController < ApplicationController
       params.fetch(:sort, {}).permit(:name, :input) 
     end
 
-    #Fill the list random, ascdening or descending
-    def populate(cond, inp)
-      p "Condition got: #{cond}, input: #{inp}"
-      if cond == 'random'
-        (0..inp.to_i).to_a.sort{ rand() - 0.5 }[0..inp.to_i]
-      elsif cond == 'desc'
-        Array.new(inp.to_i) { |i| (inp.to_i)-i }
-      elsif cond == 'asc'
-        (0..inp.to_i).to_a
-      end
-    end
+
 
   end

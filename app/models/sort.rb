@@ -48,7 +48,7 @@ class Sort < ActiveRecord::Base
 	end
 
 	#Insertion sort
-	def self.insert_sort!(list)
+	def self.insert_sort(list)
 		for i in 1..(list.length - 1)
 			x = list[i]
 			j = i - 1
@@ -60,5 +60,17 @@ class Sort < ActiveRecord::Base
 		end
 		list
 	end
+
+  #Fill the list in random, ascdening or descending order
+  def self.populate(cond, inp)
+  	if cond == 'random'
+  		(0..inp.to_i).to_a.sort{ rand() - 0.5 }[0..inp.to_i]
+  	elsif cond == 'desc'
+  		Array.new(inp.to_i) { |i| (inp.to_i)-i }
+  	elsif cond == 'asc'
+  		(0..inp.to_i).to_a
+  	end
+  end
+
 
 end
