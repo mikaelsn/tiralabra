@@ -9,7 +9,8 @@ $ ->
 			data: [
 				{y: 'Quick', time: json.quick},
 				{y: 'Merge', time: json.merge},
-				{y: 'Bubble', time: json.bubble}
+				{y: 'Bubble', time: json.bubble},
+				{y: 'Insertion', time: json.insertion}
 			]
 			xkey: 'y'
 			ykeys: ['time']
@@ -22,7 +23,8 @@ $ ->
 			data: [
 				{y: 'Quick', time: json.quick},
 				{y: 'Merge', time: json.merge},
-				{y: 'Bubble', time: json.bubble}
+				{y: 'Bubble', time: json.bubble},
+				{y: 'Insertion', time: json.insertion}
 			]
 			xkey: 'y'
 			ykeys: ['time']

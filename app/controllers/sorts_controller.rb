@@ -9,9 +9,11 @@ class SortsController < ApplicationController
   # GET /sorts.json
   def index
     @sort = Sort.new
+    #Get the average run-times
     @sort.bubble = Sort.average('bubble')
     @sort.quick = Sort.average('quick')
     @sort.merge = Sort.average('merge')
+    @sort.insertion = Sort.average('insertion')
   end
 
   # GET /sorts/1
@@ -42,6 +44,7 @@ class SortsController < ApplicationController
 
     mergeList = list
     quickList = list
+    insertList = list
 
     p "Mergelist before: #{mergeList}"
     merge = Benchmark.realtime do 
@@ -60,14 +63,22 @@ class SortsController < ApplicationController
       list = Sort.bubble(list)
     end
     p "Bubble after: #{list}"
+
+    p "Insertion before: #{insertList}"
+    insertion = Benchmark.realtime do 
+      insertList = Sort.insert_sort!(insertList)
+    end
+    p "Insertion after: #{insertList}"
+
     #convert to milliseconds
     @sort.quick = quick*1000
     @sort.bubble = bubble*1000
     @sort.merge = merge*1000
+    @sort.insertion = insertion*1000
 
     respond_to do |format|
       if @sort.save
-        format.html { redirect_to @sort, notice: "Quicksort: #{quick*1000}ms, Mersort: #{merge*1000}ms, Bubblesort: #{bubble*1000}ms" }
+        format.html { redirect_to @sort, notice: "Quicksort: #{quick*1000}ms, Mersort: #{merge*1000}ms, Bubblesort: #{bubble*1000}ms, Insertion sort: #{insertion*1000}ms" }
         format.json { render action: 'show', status: :created, location: @sort }
       else
         format.html { render action: 'new' }
@@ -111,16 +122,16 @@ class SortsController < ApplicationController
       params.fetch(:sort, {}).permit(:name, :input) 
     end
 
+    #Fill the list random, ascdening or descending
     def populate(cond, inp)
+      p "Condition got: #{cond}, input: #{inp}"
       if cond == 'random'
         (0..inp.to_i).to_a.sort{ rand() - 0.5 }[0..inp.to_i]
-      end
-      if cond == 'desc'
+      elsif cond == 'desc'
         Array.new(inp.to_i) { |i| (inp.to_i)-i }
-      end
-      if cond == 'asc'
-        Array.new(inp.to_i) { |i| i }
+      elsif cond == 'asc'
+        (0..inp.to_i).to_a
       end
     end
 
-end
+  end
