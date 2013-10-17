@@ -1,10 +1,10 @@
 require 'test_helper'
 
-class SortTest < ActiveSupport::TestCase
+class SortTestDescending < ActiveSupport::TestCase
 
 	def setup
-		@ordered = (0..10000).to_a
-		@list = Sort.populate('random', 10000)
+		@ordered = (1..6000).to_a
+		@list = Sort.populate('desc', 6000)
 	end
 
 	test "Ruby built-in sort" do
