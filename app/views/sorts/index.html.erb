@@ -6,6 +6,7 @@
 <h3>Quick sort worst case O(n²) and best O(n log n)</h3>
 <h3>Merge sort worst case and best case O(n log n)</h3>
 <h3>Bubble sort worst case and best case O(n²)</h3>
+<h3>Insertion sort worst case O(n²) and best case O(n)</h3>
   <pre>
 #Bubble sort
 def self.bubble(list)
@@ -46,6 +47,20 @@ def self.merge(left, right)
   end
   #combine lists together
   sorted_list.concat(left).concat(right)
+end
+
+#Insertion sort
+def self.insert_sort(list)
+  for i in 1..(list.length - 1)
+    x = list[i]
+    j = i - 1
+    while j >= 0 and list[j] > x
+      list[j + 1] = list[j] 
+      j -= 1
+    end
+    list[j + 1] = x
+  end
+  list
 end
   </pre>
 </div>
