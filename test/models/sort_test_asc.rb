@@ -3,8 +3,8 @@ require 'test_helper'
 class SortTestAscending < ActiveSupport::TestCase
 
 	def setup
-		@ordered = (0..7000).to_a
-		@list = Sort.populate('asc', 7000)
+		@ordered = (0..6000).to_a
+		@list = Sort.populate('asc', 6000)
 	end
 
 	test "Ruby built-in sort" do
